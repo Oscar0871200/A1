@@ -1,0 +1,47 @@
+plugins {
+	// Plugin para Spring Boot
+	id 'org.springframework.boot' version '3.2.4' // Ajusta la versión de Spring Boot a la más reciente
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE' // Plugin para manejar dependencias
+	id 'java' // Plugin para proyectos Java
+}
+
+group = 'com.demo.parcialmagneto' // Grupo del proyecto
+version = '0.0.1-SNAPSHOT' // Versión del proyecto
+sourceCompatibility = '17' // Versión de Java que estamos usando (Java 17)
+
+repositories {
+	// Repositorios donde buscar dependencias
+	mavenCentral() // Repositorio de Maven Central
+}
+
+dependencies {
+	// Starter de Spring Boot para aplicaciones web (incluye Spring MVC)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Starter de Spring Boot para validación
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// JPA para manejo de entidades
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Base de datos H2 en memoria para pruebas
+	runtimeOnly 'com.h2database:h2' // Solo se necesita en tiempo de ejecución
+
+	// Driver de base de datos MySQL (opcional, depende de tu uso real)
+	// runtimeOnly 'mysql:mysql-connector-java' // Descomenta si utilizas MySQL
+
+	// Dependencia de pruebas
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // Incluye dependencias para pruebas
+
+	// Hibernate Validator (no es necesario especificar la versión, Spring Boot maneja esto)
+	implementation 'org.hibernate.validator:hibernate-validator'
+
+	// Lombok para simplificar el código (proporciona anotaciones para reducir el boilerplate)
+	implementation 'org.projectlombok:lombok:1.18.28' // Lombok versión
+	annotationProcessor 'org.projectlombok:lombok' // Procesador de anotaciones para Lombok
+}
+
+// Configura la tarea de prueba para usar JUnit 5
+tasks.named('test') {
+	useJUnitPlatform() // Habilita JUnit 5 como el framework de pruebas
+}
